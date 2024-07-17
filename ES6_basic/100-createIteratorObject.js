@@ -1,10 +1,8 @@
 export default function createIteratorObject(report) {
   // Stocker tous les employés de tous les départements dans un tableau unique
   const allEmployees = [];
-  for (const department in report.allEmployees) {
-    if (Object.hasOwnProperty.call(report.allEmployees, department)) {
-      allEmployees.push(...report.allEmployees[department]);
-    }
+  for (const department of Object.keys(report.allEmployees)) {
+    allEmployees.push(...report.allEmployees[department]);
   }
 
   // Créer et retourner l'itérateur
