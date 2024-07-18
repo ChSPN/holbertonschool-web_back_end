@@ -1,20 +1,19 @@
-/* eslint-disable no-unused-vars */
 class Building {
-  constructor(sqft) {
-    if (new.target === Building) {
-      throw new Error('Cannot instantiate from Building directly.');
-    }
-    this._sqft = sqft;
-  }
+	constructor(sqft) {
+		if (new.target === Building) {
+			throw new TypeError('Cannot construct Building instances directly');
+		}
+		if (this.evacuationWarningMessage === undefined) {
+			throw new TypeError('Class extending Building must override evacuationWarningMessage');
+		}
+		this._sqft = sqft;
+	}
 
-  get sqft() {
-    return this._sqft;
-  }
+	get sqft() {
+		return this._sqft;
+	}
 
-  /* eslint-disable class-methods-use-this */
-  evacuationWarningMessage() {
-    throw new Error('Class extending Building must override evacuationWarningMessage');
-  }
-  /* eslint-enable class-methods-use-this */
+	evacuationWarningMessage() {
+		throw new Error('You need to implement evacuationWarningMessage in your class');
+	}
 }
-/* eslint-enable no-unused-vars */
