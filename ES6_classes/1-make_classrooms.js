@@ -1,4 +1,4 @@
-import ClassRoom from './0-classroom'; // Suppression de .js
+import ClassRoom from './0-classroom.js'; // Suppression de .js
 
 function initializeRooms() {
   return [
