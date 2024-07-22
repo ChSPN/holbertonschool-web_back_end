@@ -1,9 +1,9 @@
-function getListStudentIds(array) {
-  if (!Array.isArray(array)) {
+// 1-get_list_student_ids.js
+function getListStudentIds(students) {
+  if (!Array.isArray(students)) {
     return [];
   }
-  return array.map((student) => student.id);
+  return students.map((student) => student.id);
 }
 
-// Exemple d'utilisation de la fonction pour éviter l'erreur "no-unused-vars"
-console.log(getListStudentIds([{ id: 1 }, { id: 2 }, { id: 3 }]));
+export default getListStudentIds;
