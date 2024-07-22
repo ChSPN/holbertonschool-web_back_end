@@ -1,3 +1,4 @@
+// 0-get_list_students.js
 function getListStudents() {
   return [
     { id: 1, firstName: 'Guillaume', location: 'San Francisco' },
@@ -6,5 +7,4 @@ function getListStudents() {
   ];
 }
 
-// Exemple d'utilisation de la fonction pour éviter l'erreur "no-unused-vars"
-console.log(getListStudents());
+export default getListStudents;
