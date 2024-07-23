@@ -1,6 +1,7 @@
-export default function getResponseFromAPI() {
+function getResponseFromAPI() {
   return new Promise((resolve) => {
-    // Simulate an asynchronous operation here
-    resolve('Response received');
+    resolve('Opération réussie');
   });
 }
+
+export default getResponseFromAPI;
