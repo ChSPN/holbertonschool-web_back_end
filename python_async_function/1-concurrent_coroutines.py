@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 import asyncio
 from typing import List
-from previous_file import (
+from 1-main.py import (
     wait_random,
-)  # Replace 'previous_file' with the actual filename
+)  # wait_random is a coroutine that takes in an integer argument and returns a float.
 
 
 async def wait_n(n: int, max_delay: int) -> List[float]:
