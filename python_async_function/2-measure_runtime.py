@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import asyncio
 import time
-from previous_file import (
+from 1-main.py import (
     wait_n,
 )  # Replace 'previous_file' with the actual filename
 
