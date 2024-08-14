@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 import asyncio
+import random
 import time
-from 1-main.py import (
-    wait_n,
-)  # Replace 'previous_file' with the actual filename
+from typing import List
+
+wait_random = __import__("0-basic_async_syntax").wait_random
 
 
 def measure_time(n: int, max_delay: int) -> float:
@@ -12,10 +13,3 @@ def measure_time(n: int, max_delay: int) -> float:
     end_time = time.perf_counter()
     total_time = end_time - start_time
     return total_time / n
-
-
-# Example usage
-if __name__ == "__main__":
-    n = 5
-    max_delay = 9
-    print(measure_time(n, max_delay))
