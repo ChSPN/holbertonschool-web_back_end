@@ -5,7 +5,11 @@ using async comprehensions.
 """
 
 from typing import List
-from 0-async_generator import async_generator  # Correction de l'importation
+import importlib
+
+# Importation dynamique du module
+async_generator_module = importlib.import_module('0-async_generator')
+async_generator = async_generator_module.async_generator
 
 
 async def async_comprehension() -> List[float]:
