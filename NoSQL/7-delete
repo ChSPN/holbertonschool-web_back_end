@@ -1,1 +1,2 @@
-// my comment
+#!/bin/bash
+mongo "$1" --eval 'db.school.deleteMany({name: "Holberton school"})'
