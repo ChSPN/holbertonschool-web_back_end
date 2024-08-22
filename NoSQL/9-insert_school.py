@@ -1,28 +1,18 @@
 #!/usr/bin/env python3
-"""
-This module provides a function to insert a new document into a MongoDB collection.
-"""
-
-from pymongo.collection import Collection
+""" NoSQL """
 
 
-def insert_school(mongo_collection: Collection, **kwargs) -> str:
+def insert_school(mongo_collection, **kwargs):
     """
-    Inserts a new document in a collection based on kwargs.
+    Inserts a new document into a collection.
 
-    Args:
-        mongo_collection (Collection): The pymongo collection object.
-        **kwargs: Arbitrary keyword arguments representing the document fields.
+    Parameters:
+    mongo_collection (pymongo.collection.Collection):
+    The pymongo collection object.
+    **kwargs: The document fields and values to be inserted.
 
     Returns:
-        str: The ID of the newly created document.
+    The _id of the newly inserted document.
     """
-    new_document = mongo_collection.insert_one(kwargs)
-    return str(new_document.inserted_id)
-
-
-if __name__ == "__main__":
-    from pymongo import MongoClient
-    client = MongoClient('mongodb://127.0.0.1:27017')
-    school_collection = client.my_db.school
-
+    result = mongo_collection.insert_one(kwargs)
+    return result.inserted_id
