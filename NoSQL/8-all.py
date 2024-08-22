@@ -10,12 +10,3 @@ def list_all(mongo_collection):
     :return: list of documents or an empty list if no documnt in the collection
     """
     return list(mongo_collection.find())
-
-
-# Exemple d'utilisation
-if __name__ == "__main__":
-    client = MongoClient('mongodb://127.0.0.1:27017')
-    school_collection = client.my_db.school
-    schools = list_all(school_collection)
-    for school in schools:
-        print("[{}] {}".format(school.get('_id'), school.get('name')))
