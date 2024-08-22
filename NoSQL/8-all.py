@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-from pymongo import MongoClient
+"""NoSQL"""
+from typing import List
 
 
-def list_all(mongo_collection):
+def list_all(mongo_collection) -> List:
     """
     Lists all documents in a collection.
 
