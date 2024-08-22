@@ -1,2 +1,2 @@
-#!/bin/bash
+// write a script that deletes all documents with name="Holberton school" in the collection school
 mongo "$1" --eval 'db.school.deleteMany({name: "Holberton school"})'
