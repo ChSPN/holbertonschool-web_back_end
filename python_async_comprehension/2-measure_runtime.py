@@ -3,11 +3,9 @@
 random numbers asynchronously using async comprehensions. """
 import asyncio
 import time
-import importlib
 
-# Importation dynamique du module
-async_comprehension_module = importlib.import_module('1-async_comprehension')
-async_comprehension = async_comprehension_module.async_comprehension
+# Importation directe de la fonction
+async_comprehension = __import__('1-async_comprehension').async_comprehension
 
 
 async def measure_runtime() -> float:
