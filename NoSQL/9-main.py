@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""" 9-main """
+""" NoSQL """
 
 def insert_school(mongo_collection, **kwargs):
     """ insert a document in a collection based on kwargs """
