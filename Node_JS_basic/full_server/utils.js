@@ -1,22 +1,30 @@
+const { parse } = require('csv-parse/sync');
 const fs = require('fs').promises;
 
 async function readDatabase(filePath) {
   try {
-    const data = await fs.readFile(filePath, 'utf-8');
-    const lines = data.trim().split('\n').slice(1); // Ignorer la première ligne
-    const result = {};
+    const data = await fs.readFile(filePath, 'utf8');
+    const records = parse(data, {
+      columns: true,
+      skip_empty_lines: true,
+    });
 
-    for (const line of lines) {
-      const [firstName, , , field] = line.split(','); // Extraire les valeurs des colonnes
-      if (!result[field]) {
-        result[field] = [];
+    const studentsByField = {};
+
+    records.forEach((record) => {
+      const { field } = record;
+      const firstName = record.firstname;
+
+      if (!studentsByField[field]) {
+        studentsByField[field] = [];
       }
-      result[field].push(firstName);
-    }
 
-    return result;
-  } catch (error) {
-    throw new Error(error.message);
+      studentsByField[field].push(firstName);
+    });
+
+    return studentsByField;
+  } catch (err) {
+    throw new Error('Cannot load the database');
   }
 }
 
