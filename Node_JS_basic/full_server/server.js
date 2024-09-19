@@ -1,15 +1,17 @@
-import express from 'express';
-import routes from './routes/index';
+const express = require('express');
+const routes = require('./routes/index');
 
 const app = express();
-const PORT = 1245;
+const port = 1245;
 
-// Use the defined routes
+// Récupérer le chemin du fichier de la base de données passé en argument
+const database = process.argv[2];
+app.set('database', database);
+
 app.use(routes);
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
 
-export default app;
+module.exports = app;

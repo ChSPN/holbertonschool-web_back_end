@@ -2,43 +2,45 @@ const fs = require('fs');
 
 function countStudents(filePath) {
   return new Promise((resolve, reject) => {
-    fs.readFile(filePath, 'utf8', (err, data) => {
-      if (err) {
-        reject(new Error('Cannot load the database'));
-        return;
+    // Lire le fichier de manière asynchrone
+    fs.readFile(filePath, 'utf8', (error, data) => {
+      if (error) {
+        return reject(new Error('Cannot load the database'));
       }
 
-      const lines = data.trim().split('\n');
+      // Diviser les lignes par retour à la ligne
+      const lines = data.split('\n').filter((line) => line.trim() !== '');
+
+      // Vérifier qu'il y a des étudiants
       if (lines.length <= 1) {
-        console.log('No students found');
-        resolve();
-        return;
+        console.log('Number of students: 0');
+        return resolve();// Ajout d'un return pour éviter l'erreur "Expected to return a value"
       }
 
-      const students = lines.slice(1).map((line) => line.split(','));
-      const fields = {};
-      let totalStudents = 0;
+      // Enlever l'en-tête et créer un tableau pour les étudiants
+      const students = lines.slice(1).map((line) => {
+        const [firstname, , , field] = line.split(','); // Ignorer les variables inutilisées 'lastname' et 'age'
+        return { firstname, field };
+      });
 
+      // Compter les étudiants par domaine
+      const fieldCount = {};
       students.forEach((student) => {
-        if (student.length > 0) { // Check for valid entries
-          totalStudents += 1;
-          const field = student[3]; // Assuming the 4th column contains the field (CS, SWE, etc.)
-          if (!fields[field]) {
-            fields[field] = [];
-          }
-          fields[field].push(student[0]); // Assuming the 1st column contains the first names
+        if (!fieldCount[student.field]) {
+          fieldCount[student.field] = [];
         }
+        fieldCount[student.field].push(student.firstname);
       });
 
-      console.log(`Number of students: ${totalStudents}`);
+      // Afficher le nombre total d'étudiants
+      console.log(`Number of students: ${students.length}`);
 
-      Object.keys(fields).forEach((field) => {
-        const count = fields[field].length;
-        const names = fields[field].join(', ');
-        console.log(`Number of students in ${field}: ${count}. List: ${names}`);
-      });
+      // Afficher les étudiants par domaine
+      for (const [field, names] of Object.entries(fieldCount)) {
+        console.log(`Number of students in ${field}: ${names.length}. List: ${names.join(', ')}`);
+      }
 
-      resolve();
+      return resolve();// Ajout d'un return pour s'assurer que la promesse est toujours résolue
     });
   });
 }

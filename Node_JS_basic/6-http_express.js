@@ -1,19 +1,19 @@
-// Import the Express module
+// Importer le module Express
 const express = require('express');
 
-// Create an Express application
+// Créer une application Express
 const app = express();
 
-// Define a route for the endpoint /
+// Définir une route pour l'endpoint /
 app.get('/', (req, res) => {
-  res.send('Hello Holberton School!'); // Send the response
+  res.send('Hello Holberton School!'); // Envoyer la réponse
 });
 
-// Make the application listen on port 1245
+// Faire écouter l'application sur le port 1245
 const PORT = 1245;
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
 
-// Export the application
+// Exporter l'application
 module.exports = app;
